@@ -1,1 +1,7 @@
-Hands-on networking labs built in Cisco Packet Tracer - documenting my progress from NOC-level fundamentals to advanced network engineering concepts.
+## Welcome! 
+
+This repository contains my Cisco Packet Tracer labs, documenting my journey from beginner networking concepts to intermediate and advanced enterprise-level simulations. Each lab includes configuration files, topologies, step-by-step explanations, and lessons learned.
+
+---
+
+## 🟢 Beginner Labs
