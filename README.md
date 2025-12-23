@@ -1,4 +1,8 @@
-## Welcome! 
+# Packet Tracer Network Labs
 
-This repository contains my Cisco Packet Tracer labs, documenting my journey from beginner networking concepts to intermediate and advanced enterprise-level simulations. Each lab includes configuration files, topologies, step-by-step explanations, and lessons learned.
+This repository contains hands-on Cisco Packet Tracer labs designed to
+demonstrate practical networking concepts aligned with CCNA-level
+knowledge and real-world small business network design.
 
+The labs focus on building, configuring, and troubleshooting networks
+using Cisco IOS devices, emphasizing clean design and best practices.
