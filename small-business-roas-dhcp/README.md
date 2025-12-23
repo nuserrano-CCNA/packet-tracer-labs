@@ -66,3 +66,7 @@ between departments.
 - DHCP relay (ip helper-address)
 - Basic NAT configuration
 - Troubleshooting Layer 2 vs Layer 3 issues
+
+## Lessons Learned
+- DHCP broadcasts do not cross VLANs without a relay
+- Only one trunk is required between router and switches
