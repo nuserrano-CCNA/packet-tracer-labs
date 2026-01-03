@@ -5,7 +5,7 @@
 
 ---
 
-## Problem Description
+## Overview
 Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or reach their default gateways, while devices on Switch1 functioned normally.
 
 ---
