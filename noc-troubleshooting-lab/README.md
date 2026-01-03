@@ -4,7 +4,7 @@
 Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or reach their default gateways, while devices on Switch1 functioned normally.
 
 ## Topology
-(Switch1 → Trunk → Switch2 → Trunk → Router)
+![Network Topology](topology.png)
 
 ## Symptoms
 - VLAN 10 and VLAN 20 devices on Switch1 could ping each other ✅  
