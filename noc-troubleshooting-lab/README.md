@@ -1,16 +1,15 @@
 # NOC Troubleshooting Lab – Missing VLANs on Trunked Switch
 
-## Topology
-(Switch1 → Trunk → Switch2 → Trunk → Router)
-
 ## Overview
 Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or reach their default gateways, while devices on Switch1 functioned normally.
+
+## Topology
+(Switch1 → Trunk → Switch2 → Trunk → Router)
 
 ## Symptoms
 - VLAN 10 and VLAN 20 devices on Switch1 could ping each other ✅  
 - VLAN 10 and VLAN 20 devices on Switch2 could not ping each other ❌  
-- Inter-VLAN routing failed for devices connected to Switch2 ❌  
-
+- Inter-VLAN routing failed for devices connected to Switch2 ❌
 
 ## Troubleshooting Process
 1. Verified device IP configuration on PCs  
