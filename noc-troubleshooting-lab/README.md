@@ -1,7 +1,7 @@
 # NOC Troubleshooting Lab – Missing VLANs on Trunked Switch
 
 ## Overview
-Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or reach their default gateways, while devices on Switch1 functioned normally.
+Devices in VLANs 10 and 20 on Switch1 could not communicate across switches or reach their default gateways, while devices on Switch0 functioned normally.
 
 ## Topology
 ![Network Topology](topology.png)
@@ -16,22 +16,22 @@ Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or r
    ipconfig /all   # On PCs
    ping [gateway IP]
    ```
-   Observed that devices on Switch2 could not reach the gateway.  
+   Observed that devices on Switch1 could not reach the gateway.  
 
-2. Checked trunk status on Switch2  
+2. Checked trunk status on Switch1  
    ```bash
    show interfaces trunk
    ```
    - Trunk links were up  
    - VLANs 10 and 20 not passing → issue suspected on Layer 2  
 
-3. Checked VLANs on Switch2  
+3. Checked VLANs on Switch1  
    ```bash
    show vlan brief
    ```
    - VLANs 10 and 20 were **missing** → traffic for these VLANs dropped  
 
-4. Created missing VLANs on Switch2  
+4. Created missing VLANs on Switch1  
    ```bash
    conf t
    vlan 10
@@ -65,8 +65,8 @@ Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or r
 - Trunk ports were not configured to explicitly allow all required VLANs.  
 
 ## Fix Applied
-1. Created VLANs 10 and 20 on Switch2  
-2. Configured trunk ports between Switch1↔Switch2 and Switch2↔Router to allow VLANs 10 and 20  
+1. Created VLANs 10 and 20 on Switch1  
+2. Configured trunk ports between Switch0↔Switch1 and Switch2↔Router to allow VLANs 10 and 20  
 3. Verified end-to-end connectivity  
 
 ## Verification
@@ -74,7 +74,7 @@ Devices in VLANs 10 and 20 on Switch2 could not communicate across switches or r
 |------|--------|
 | PC2 → Gateway | ✅ Successful |
 | PC2 → PC1 (Inter-VLAN) | ✅ Successful |
-| `show vlan brief` on Switch2 | ✅ VLANs 10 & 20 exist |
+| `show vlan brief` on Switch1 | ✅ VLANs 10 & 20 exist |
 | `show interfaces trunk` | ✅ VLANs 10 & 20 allowed |
 
 ## Lessons Learned
