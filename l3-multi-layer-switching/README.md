@@ -8,6 +8,8 @@ The 3650 multilayer switch acts as the root bridge and performs inter-VLAN routi
 
 ## Topology
 
+![Network Topology](topology.png)
+
 - **SW1**: Cisco 3650-24PS (Layer 3 Switch / Root Bridge)
 - **SW2**: Cisco 2960-24TT (Access Switch)
 - **SW3**: Cisco 2960-24TT (Access Switch)
