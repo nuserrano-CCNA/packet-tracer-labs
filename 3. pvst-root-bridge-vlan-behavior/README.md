@@ -2,7 +2,7 @@
 
 ## Overview
 
-This lab explores the behavior of Per-VLAN Spanning Tree Plus (PVST+) in a redundant multi-switch topology. It focuses on how Spanning Tree instances are created, how root bridges are elected independently per VLAN, and why trunk links are required for switches to participate in a VLAN’s STP instance — even if they have no access ports in that VLAN.
+This lab explores the behavior of Per-VLAN Spanning Tree Plus (PVST+) in a redundant multi-switch topology. It focuses on how Spanning Tree instances are created, how root bridges are elected independently per VLAN, and why trunk links are required for switches to participate in a VLAN’s STP instance - even if they have no access ports in that VLAN.
 
 The topology uses four Layer 2 switches arranged with multiple redundant paths. End devices are placed only in VLAN 10, allowing clear observation of how different root bridges affect (or do not affect) traffic depending on the VLAN.
 
