@@ -63,11 +63,10 @@ Triangle topology between SW1, SW2, and SW3 creates a redundant Layer 2 path for
 - Designated vs Root vs Blocking ports in a redundant topology
 - PortFast + BPDU Guard for end-user ports
 - Layer 2 vs Layer 3 traffic flow
-- Clean hierarchical design with L3 core
 
 ## Lessons Learned
 
-- When using a multilayer switch for inter-VLAN routing, end devices only need to reach their local SVI gateway — the L3 switch handles the rest.
+- When using a multilayer switch for inter-VLAN routing, end devices only need to reach their local SVI gateway and the L3 switch handles the rest.
 - Setting the root bridge on the most powerful/central switch (the 3650) keeps the topology predictable and efficient.
 - PortFast + BPDU Guard is critical on access ports to prevent accidental loops from end devices while still allowing fast convergence.
 - Even a simple triangle topology is enough to clearly observe STP blocking behavior.
