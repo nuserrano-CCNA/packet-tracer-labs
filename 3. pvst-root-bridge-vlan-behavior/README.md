@@ -8,6 +8,8 @@ The topology uses four Layer 2 switches arranged with multiple redundant paths. 
 
 ## Topology
 
+![Network Topology](topology.png)
+
 - **SW1** (Top Left) – Distribution switch  
 - **SW2** (Top Right) – Access switch (PC0 connected)  
 - **SW3** (Bottom Left) – Distribution switch  
