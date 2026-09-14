@@ -48,8 +48,7 @@ Simply making one switch the Spanning Tree root for a VLAN does **not** solve th
 
 The proper way to achieve the design I wanted is to use a **First Hop Redundancy Protocol**, specifically:
 
-- **HSRP** (Hot Standby Router Protocol) — Cisco proprietary
-- or VRRP / GLBP
+- **HSRP** (Hot Standby Router Protocol)
 
 With HSRP:
 - Both multilayer switches have unique physical IP addresses on their SVIs
