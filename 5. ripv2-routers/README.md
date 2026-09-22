@@ -13,10 +13,9 @@ The entire cluster of four routers represents one building or campus edge (IGP-s
 ## Topology
 ![Network Topology](topology.png)
 
-- **Four Cisco 2960/2960T switches** (acting as Layer 3 routers with three GigabitEthernet interfaces each)
-- **Six end devices** (PCs) connected to the access layer
-- **Two core switches** (R3 and R4) connected via a high-speed 10 Gbps link (blue)
-- **Inter-router links** with different subnet masks (purple, green, red, blue) using VLSM
+- **Four Cisco 2960 switches**
+- **Four end devices** (PCs) connected to access ports on the switches
+- **Four Routers** with different point-to-point networks attached to them (purple, green, red, blue) using VLSM
 - All routers run **RIP v2**
 
 ## Network Design & IP Addressing (VLSM)
@@ -24,12 +23,6 @@ The entire cluster of four routers represents one building or campus edge (IGP-s
 - **Top-right subnet**: 192.168.2.0/24 (256 addresses, 254 usable) – SW2
 - **Bottom-left subnet**: 192.168.3.0/25 (128 addresses, 126 usable) – SW3
 - **Bottom-right subnet**: 192.168.4.0/24 (256 addresses, 254 usable) – SW4
-
-Core interconnects:
-- R3–R4 high-speed link: 10.0.34.0/30
-- R3–SW1 link: 10.0.13.0/30
-- R4–SW2 link: 10.0.24.0/30
-- Core-to-access links: 10.0.12.0/30 and 10.0.34.0/30 (with G0/0–G0/1 interfaces)
 
 ## Configuration Highlights
 - **RIP v2** enabled on **all four routers** (SW1, SW2, SW3, SW4) as the dynamic routing protocol
@@ -39,7 +32,7 @@ Core interconnects:
 - No redistribution or static routes were needed — full dynamic convergence via RIP
 
 ## Observed Behavior – Equal-Cost Load Balancing
-- When pinging between the top-left PC (PC-PT PC0) and top-right PC (PC-PT PC1), both learned paths have **identical hop count (2)**
+- When pinging between the top-left PC and top-right PC, both learned paths have **identical hop count (2)**
 - RIP metric (hop count) is exactly the same on both equal-cost paths
 - Traffic is **automatically load-balanced** across the two links (green link 10.0.12.0/30 and red link 10.0.24.0/30)
 - This demonstrates classic equal-cost multipath (ECMP) behavior with RIP v2
