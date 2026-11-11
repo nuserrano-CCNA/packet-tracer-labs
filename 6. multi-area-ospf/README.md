@@ -5,6 +5,8 @@ This lab demonstrates a multi-area OSPF design in a single Autonomous System. Ar
 
 The topology models a corporate network with an Internet edge, core infrastructure, and three downstream areas that each highlight different Layer 2 / Layer 3 features.
 
+## Topology
+
 ## Topology Summary
 - **Area 0 – Backbone**: Core routers and distribution switches interconnecting all areas.
 - **Area 1**: Access layer with VLAN 10 and VLAN 20, Layer 3 switches, and EtherChannel between switches.
