@@ -1,56 +1,39 @@
-# RIP v2 IGP Lab – Single Autonomous System
+**Multi-Area OSPF Lab – Single Autonomous System (AS 172.16.0.0/16)**
 
 ## Overview
-This lab demonstrates the configuration and operation of **RIP v2** as a dynamic interior gateway protocol (IGP) in a single Autonomous System (AS). The topology simulates an IGP environment where all routers belong to the same AS and exchange routes using distance-vector routing.
+This lab demonstrates a multi-area OSPF design in a single Autonomous System. Area 0 serves as the backbone, while non-backbone areas incorporate additional technologies: VLSM addressing, EtherChannel, HSRP, and manual Spanning Tree Protocol (STP) root bridge configuration.
 
-Key goals:
-- Configure RIP v2 with `no auto-summary` to preserve classless subnet masks
-- Use VLSM for efficient IP address allocation across all interfaces
-- Observe equal-cost load balancing when multiple paths have the same hop count
+The topology models a corporate network with an Internet edge, core infrastructure, and three downstream areas that each highlight different Layer 2 / Layer 3 features.
 
-The entire cluster of four routers represents one building or campus edge (IGP-style design), not an external ISP.
+## Topology Summary
+- **Area 0 – Backbone**: Core routers and distribution switches interconnecting all areas.
+- **Area 1**: Access layer with VLAN 10 and VLAN 20, Layer 3 switches, and EtherChannel between switches.
+- **Area 2**: Dual routers (R2A / R2B) with separate /27 subnets and end devices.
+- **Area 3**: HSRP pair (R3A standby / R3B active) with a four-switch Layer 2 domain, manual root bridge, and end devices.
 
-## Topology
-![Network Topology](topology.png)
+Internet edge uses a simple /30 link to the ISP router.
 
-- **Four Cisco 2960 switches**
-- **Four end devices** (PCs) connected to access ports on the switches
-- **Four Routers** with different point-to-point networks attached to them (purple, green, red, blue) using VLSM
-- All routers run **RIP v2**
+## Key Design Elements
+- **VLSM** throughout the 172.16.0.0/16 address space for efficient allocation of /27, /30, and other masks.
+- **EtherChannel** between the 3560 switches in Area 1.
+- **HSRP** in Area 3 (virtual IP 172.16.0.158) with explicit Active/Standby roles.
+- **Manual STP root bridge** configuration on one of the switches in Area 3.
+- Multi-area OSPF with Area 0 as the transit backbone.
 
-## Network Design & IP Addressing (VLSM)
-- **Top-left subnet**: 172.16.1.0/28 (16 addresses, 14 usable) – SW1
-- **Top-right subnet**: 192.168.2.0/24 (256 addresses, 254 usable) – SW2
-- **Bottom-left subnet**: 192.168.3.0/25 (128 addresses, 126 usable) – SW3
-- **Bottom-right subnet**: 192.168.4.0/24 (256 addresses, 254 usable) – SW4
+## Important Observation – HSRP & STP Interaction
+During testing it was observed that when the HSRP Active router fails and the Standby router takes over, the Spanning Tree topology does **not** automatically recalculate. This can introduce additional latency because the Layer 2 path remains suboptimal relative to the new Layer 3 first hop. Careful coordination of STP root placement and HSRP priorities is required in production designs that combine both protocols.
 
-## Configuration Highlights
-- **RIP v2** enabled on **all four routers** (SW1, SW2, SW3, SW4) as the dynamic routing protocol
-- `no auto-summary` configured on all RIP processes
-- Version 2 was chosen specifically because RIP v1 cannot carry subnet mask information (pre-CIDR design)
-- All GigabitEthernet interfaces were assigned their respective IP addresses
-- No redistribution or static routes were needed — full dynamic convergence via RIP
-
-## Observed Behavior – Equal-Cost Load Balancing
-- When pinging between the top-left PC and top-right PC, both learned paths have **identical hop count (2)**
-- RIP metric (hop count) is exactly the same on both equal-cost paths
-- Traffic is **automatically load-balanced** across the two links (green link 10.0.12.0/30 and red link 10.0.24.0/30)
-- This demonstrates classic equal-cost multipath (ECMP) behavior with RIP v2
-
-**Note**: In a real IGP (e.g., OSPF), path selection would be based on cost rather than hop count, but the principle of load balancing multiple equal-cost paths remains the same.
-
-## Skills & Lessons Demonstrated
-- Configuring and enabling RIP v2 with `no auto-summary`
-- Using VLSM for address-efficient design in an IGP
-- Diagnosing and observing equal-cost load balancing
-- Understanding why RIP v2 is preferred over RIP v1 in modern classless networks
-- Real-world troubleshooting of dynamic routing in a single AS
+## Skills Demonstrated
+- Multi-area OSPF configuration and inter-area routing
+- VLSM addressing design
+- EtherChannel (Layer 2 link aggregation)
+- HSRP with Active/Standby roles
+- Manual STP root bridge selection
+- Awareness of the interaction between first-hop redundancy and Spanning Tree
 
 ## Current Status
-Lab is working and fully operational in Packet Tracer.  
-The design intentionally uses RIP v2 to illustrate classic distance-vector behavior and load balancing inside one autonomous system.
+Lab is fully operational in Packet Tracer.
 
-## Files Included
+## Files
 - `multi-area-ospf.pkt` – Packet Tracer simulation file (current working state)
 - `topology.png` – Network topology diagram
-
