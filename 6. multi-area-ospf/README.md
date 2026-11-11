@@ -1,4 +1,4 @@
-**Multi-Area OSPF Lab – Single Autonomous System (AS 172.16.0.0/16)**
+# **Multi-Area OSPF Lab – Single Autonomous System (AS 172.16.0.0/16)**
 
 ## Overview
 This lab demonstrates a multi-area OSPF design in a single Autonomous System. Area 0 serves as the backbone, while non-backbone areas incorporate additional technologies: VLSM addressing, EtherChannel, HSRP, and manual Spanning Tree Protocol (STP) root bridge configuration.
